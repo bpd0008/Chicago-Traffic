@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask_googlemaps import GoogleMaps, Map, icons
 from geopy.geocoders import Nominatim
 from config import MAP_API_KEY
-import requests
+# import requests
 app = Flask(__name__)
 GoogleMaps(app, key= MAP_API_KEY
 )
