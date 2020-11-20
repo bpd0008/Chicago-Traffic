@@ -1,1 +1,1 @@
-CHI_API_Key = "mKyzyXsOFJFPT8bLNnHngKUtP"
+CHI_API_KEY = "mKyzyXsOFJFPT8bLNnHngKUtP"
