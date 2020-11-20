@@ -1,0 +1,11 @@
+<html>
+    <body>
+        <h1>Risk Level</h1>
+        <p> {{form_data['Weather']}} + {{form_data['Hour']}} + {{form_data['Neighborhood']}}</p>
+        <p> {{start}}, {{end}}</p>
+        {% for key,value in form_data.items() %}
+        <h2> {{key}}</h2>
+        <p> {{value}}</p>
+        {% endfor %}
+    </body>
+</html>
