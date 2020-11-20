@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask_googlemaps import GoogleMaps, Map, icons
 import requests
 from config import API_KEY
-api_key = "API_Key"
+api_key = "AIzaSyDZs5r3-9TRZ0VXocqpbjYbgxg70bzV2K4"
 app = Flask(__name__)
 GoogleMaps(app, key= API_KEY
 )
