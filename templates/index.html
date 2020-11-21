@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chicago Traffic Accidents</title>
-    <link rel="stylesheet" href="static/js/style.css">
+    <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>  
       /* h1 heading tag */
@@ -178,7 +178,7 @@
                                 <div class="panel panel-default">
                                   <div class="panel-heading">Search Criteria</div>
                                   <div class="panel-body">
-                                    <form action="/data" method = "POST">
+                                    <form action="" method = "POST">
                                             <p>Weather <input type = "text" name = "Weather" /></p>
                                             <p>Hour <input type = "text" name = "Hour" /></p>
                                             <p>Neighborhood <input type = "text" name = "Neighborhood" /></p>
@@ -190,9 +190,22 @@
                                 </div>
                               </aside>
                             </div>
-                            <!-- <select id="selDataset" onchange="optionChanged(this.value)">
-                            </select> -->
                           </div>
+                    </div>
+                    <div class = "col-md-4">
+                      <div class="well">
+                        <h2>Risk Level</h2>
+                        {% if g.form_data %}
+                        {% extends base.html %}
+                        <p> {{form_data['Weather']}} + {{form_data['Hour']}} + {{form_data['Neighborhood']}}</p>
+                        <p> {{start_location}}, {{end_location}}</p>
+                        <p> {{start_lat}}, {{start_long}}</p>
+                        {% for key,value in form_data.items() %}
+                        <h2> {{key}}</h2>
+                        <p> {{value}}</p>
+                        {% endfor %}
+                        {% endif %}
+                      </div>
                     </div>
                 </div>
             </div>
@@ -202,7 +215,7 @@
               <title>Event Click LatLng</title>
               <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
               <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpGBmyN_wirqJgtFleNjKqPSGoe2A11I4&callback=initMap&libraries=&v=weekly"
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDom1FJvz41eWHt9r7e8_tq93_w7Fg8sQA&callback=initMap&libraries=&v=weekly"
                 defer
               ></script>
               <link rel="stylesheet" type="text/css" href="./style.css" />
@@ -217,6 +230,6 @@
     <!-- <script src="js/jquery.min.js"></script>
     
     <script src="js/scripts.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpGBmyN_wirqJgtFleNjKqPSGoe2A11I4&callback=initMap"></script>   -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDom1FJvz41eWHt9r7e8_tq93_w7Fg8sQA&callback=initMap"></script>   -->
   </body>
 </html>

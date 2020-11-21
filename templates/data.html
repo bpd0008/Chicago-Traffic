@@ -1,13 +1,86 @@
 <html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chicago Traffic Accidents</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <body>
-        <h1>Risk Level</h1>
+        <h2>User Accident Profile</h2>
+        <p>The following table gives the probabilties for the most likely accident profile of damage and hit and run along your route.
+        </p>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th> Damage Type</th>
+                    <th>Probability of Accident Profile to Happen</th>
+                    <th>Probability of Accident Profile not to Happen</th>
+                    <th>Risk Level of Route</th>
+                  </tr>
+            </thead>
+            <tr class="table-primary">
+            <tbody>
+            <tr>
+              <td>Over $1500</td>
+              <td>{{((damage[0][0,0]+damage[0][1,0])/2)|round(3)}}</td> 
+              <td>{{((damage[0][0,1]+damage[0][1,1])/2)|round(3)}}</td>
+                    {% if ((damage[0][0,0]+damage[0][1,0])/2) > 0.8 %}
+                        <td>Route is More Dangerous than Average Route</td>
+                    {% else %}
+                        <td>Route is Less Dangerous than Average Route</td>
+                    {% endif %}
+            </tr>
+            <tr>
+              <td>$501 - $1500</td>
+              <td>{{((damage[1][0,0]+damage[1][1,0])/2)|round(3)}}</td> 
+              <td>{{((damage[1][0,1]+damage[1][1,1])/2)|round(3)}}</td>
+            </tr>
+            <tr>
+              <td>$500 and Below</td>
+              <td>{{((damage[2][0,0]+damage[2][1,0])/2)|round(3)}}</td> 
+              <td>{{((damage[2][0,1]+damage[2][1,1])/2)|round(3)}}</td>
+            </tr>
+            </tbody>
+          </table>
+          <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Probability of Accident Profile Not to be a Hit and Run</th>
+                    <th>Probability of Accident Profile to be Hit and Run</th>
+                    <th>Risk Level of Route</th>
+                  </tr>
+            </thead>
+            <tr class="table-primary">
+            <tbody>            
+            <tr>
+                <td>{{((hit_n_run[0][0,0]+damage[0][1,0])/2)|round(3)}}</td> 
+                <td>{{((hit_n_run[0][0,1]+damage[0][1,1])/2)|round(3)}}</td>
+                    {% if ((hit_n_run[0][0,0]+damage[0][1,0])/2) < 0.6 %}
+                        <td>Route is More Dangerous for Hit and Runs</td>
+                    {% else %}
+                        <td>Route is less dangerous for Hit and Runs than Average Route</td>
+                    {% endif %}
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
+        <h2>User Input Risk Factors</h2>
         <p> {{form_data['Weather']}} + {{form_data['Hour']}} + {{form_data['Neighborhood']}}</p>
         <p> {{start_location}}, {{end_location}}</p>
         <p> {{start_lat}}, {{start_long}}</p>
+        <p> {{end_lat}}, {{end_long}}</p>
         {% for key,value in form_data.items() %}
         <h2> {{key}}</h2>
         <p> {{value}}</p>
         {% endfor %}
+    
+    
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>   
     </body>
 </html>
 
